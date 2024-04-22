@@ -1,11 +1,10 @@
 from flask import Flask , render_template, request
 import requests 
-import json
 app = Flask(__name__)
 
 @app.route('/')
 def homepage():
-    return render_template("Index.html")
+    return render_template("index.html")
 
 @app.route("/weatherapp",methods = ['POST' , "GET"])
 def get_weatherdata():
@@ -18,7 +17,8 @@ def get_weatherdata():
         }
     response = requests.get(url,params=param)
     data = response.json()
-    return json.dumps(data, sort_keys=True, indent=4)
+    city = data['name']
+    return f'data:{data}\ncity = {city}'
 
 if __name__ == '__main__':
-    app.run(host = "0.0.0.0" , port = 5001)
+    app.run(host = "0.0.0.0" , port = 502)
