@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <title>Search Page</title>
 </head>
 <body>
-    <title>Search Page</title>
     <div class="content">
-        <h1 style="text-align: left">Search</h1>
+        <h1 class="title">Search</h1>
     
         <div class="form">
             <form action="/weatherapp" method="POST">
-                <label for='city'>enter city: <label>
+                <label for='city'>Enter city: </label>
                 <input type="text" name="city" id="city"><br>
 
-                <label for='units'>Enter Units: <label>
+                <label for='units'>Enter Units: </label>
                 <input type="text" name="units" id="units"><br>
-                <label for='appid'>Enter your API KEY: <label>
+                <label for='appid'>Enter your API KEY: </label>
                 <input type="text" name="appid" id="appid"><br>
                 <input type="submit" value="Search">
             </form>

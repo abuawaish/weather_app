@@ -1,6 +1,6 @@
 from flask import Flask , render_template, request
 import requests 
-
+import json
 app = Flask(__name__)
 
 @app.route('/')
@@ -18,7 +18,7 @@ def get_weatherdata():
         }
     response = requests.get(url,params=param)
     data = response.json()
-    return f"data : {data}"
+    return json.dumps(data, sort_keys=True, indent=4)
 
 if __name__ == '__main__':
     app.run(host = "0.0.0.0" , port = 5002)
