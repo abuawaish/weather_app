@@ -1,0 +1,1 @@
+-- Developed a weather application that fetches real-time data using a weather API.
