@@ -13,13 +13,14 @@
         }
 
         .content {
-            width: 40%;
+            width: 80%;
+            max-width: 400px;
             margin: 20px auto;
             background-color: #c5cace;
             padding: 20px;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: center; /* Center align the content */
+            text-align: center;
         }
 
         .title {
@@ -28,11 +29,14 @@
 
         .form {
             margin-top: 20px;
-            display: inline-block; /* Set the form to display as an inline block */
+            display: inline-block;
+            width: 100%;
         }
 
         label {
             font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
         }
 
         input[type="text"],
@@ -52,6 +56,13 @@
         input[type="submit"]:hover {
             background-color: #45a049;
         }
+
+        @media (max-width: 400px) {
+            .content {
+                width: 90%;
+                padding: 15px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -60,13 +71,13 @@
         
         <div class="form">
             <form action="/weatherapp" method="POST">
-                <label for='city'>Enter city </label>
+                <label for="city">Enter city</label>
                 <input type="text" name="city" id="city"><br>
 
-                <label for='units'>Enter Units </label>
+                <label for="units">Enter Units</label>
                 <input type="text" name="units" id="units"><br>
 
-                <label for='appid'>Enter your API KEY </label>
+                <label for="appid">Enter your API KEY</label>
                 <input type="text" name="appid" id="appid"><br>
 
                 <input type="submit" value="Search">
