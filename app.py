@@ -1,24 +1,36 @@
-from flask import Flask , render_template, request , jsonify
-import requests 
-app = Flask(__name__)
+from flask import Flask, render_template, request
+import requests
+from typing import Any
+from requests import ConnectionError
+from requests.models import Response
+
+app: Flask = Flask(__name__)
 
 @app.route('/')
-def homepage():
+def home_page() -> str:
     return render_template("index.html")
 
-@app.route("/weatherapp",methods = ['POST' , "GET"])
-def get_weatherdata():
-        url = "https://api.openweathermap.org/data/2.5/weather"
+@app.route('/weather_app', methods=['GET', 'POST'])
+def weather_app() -> str:
+    weather_data: dict[str , Any] | None = {}
+    error_message: str = ""
+    try:
+        if request.method == 'POST':
+            city: str = request.form['city']
+            api_key: str = 'c8245292d5bee7936511387031619dc1'
+            weather_url: str = f'http://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}&units=metric'
+            response: Response = requests.get(weather_url)
+            weather_data = response.json()
+            if weather_data is not None:
+                if weather_data['cod'] != 200:
+                    error_message = weather_data.get('message', 'Error occurred')
+                    weather_data = None  # Reset weather_data if there's an error
+    except ConnectionError:
+        exception_message: str = f"You are not connected to the internet."
+        return render_template('index.html', weather = weather_data, error=exception_message)
 
-        param = {
-            'q':request.form.get("city"),
-            'appid':request.form.get('appid'),
-            'units':request.form.get('units')
-            }
-        response = requests.get(url,params=param)
-        data = response.json()
-        return jsonify(data)
+    return render_template('index.html', weather = weather_data, error = error_message)
+
 
 if __name__ == '__main__':
-    app.run(host = "0.0.0.0" , port = 502)
-    
+    app.run(debug=True, port=5001, host="0.0.0.0")
