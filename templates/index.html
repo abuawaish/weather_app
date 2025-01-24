@@ -4,26 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather App</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <!-- Weather Logo -->
+    <link rel="icon" href="{{ url_for('static', filename='weather-logo.png') }}" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
 </head>
-<body>
-    <div class="container">
-        <h1>Weather App</h1>
-        <form action = "/weather_app" method="post">
-            <input type="text" name="city" placeholder="Enter city" required>
-            <button type="submit">Get Weather</button>
+<body class="bg-gradient">
+    <div class="container mt-5">
+        <h1 class="text-center text-white mb-4">Weather App</h1>
+        <form action="/weather_app" method="post" class="mb-4">
+            <div class="input-group">
+                <input type="text" name="city" class="form-control" placeholder="Enter city" required>
+                <div class="input-group-append">
+                    <button class="btn btn-warning" type="submit">Get Weather</button>
+                </div>
+            </div>
         </form>
+
         {% if error %}
-        <p class="error">{{ error }}</p>
+        <div class="alert alert-danger">{{ error }}</div>
         {% endif %}
+
         {% if weather %}
-        <div class="weather-info">
-            <h2>Weather in {{ weather['name'] }}</h2>
-            <p>Temperature : {{ weather['main']['temp'] }} &deg;C</p>
-            <p>Weather : {{ weather['weather'][0]['description'] }}</p>
+        <div class="weather-info card text-center shadow-lg border-0">
+            <div class="card-header bg-primary text-white">
+                <h2 class="mb-0">Weather in {{ weather['name'] }}</h2>
+            </div>
+            <div class="card-body">
+                <h3 class="card-title">{{ weather['main']['temp'] }} &deg;C</h3>
+                <p class="card-text text-muted">Condition: {{ weather['weather'][0]['description'] }}</p>
+            </div>
         </div>
         {% endif %}
     </div>
+
+    <!-- Bootstrap JS (Optional) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
-

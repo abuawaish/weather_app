@@ -1,75 +1,65 @@
 body {
-    font-family: 'Arial', sans-serif;
-    background: linear-gradient(to right, #6dd5ed, #2193b0);
-    color: #fff;
-    text-align: center;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #74ebd5 0%, #ACB6E5 100%);
+    color: #333;
 }
 
 .container {
-    background-color: rgba(0, 0, 0, 0.5);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 90%;
-    max-width: 400px;
+    max-width: 600px;
+    margin-top: 100px;
 }
 
 h1 {
-    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 20px;
+.input-group input {
+    border-radius: 0.25rem;
 }
 
-input, button {
-    padding: 10px;
-    font-size: 16px;
-    margin: 5px 0;
-    width: 100%;
-    border: none;
-    border-radius: 5px;
-    font-weight: bold;
+.input-group .btn {
+    border-radius: 0.25rem;
+    transition: background-color 0.3s, transform 0.2s;
 }
 
-input {
-    background-color: rgba(255, 255, 255, 0.7);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+.input-group .btn:hover {
+    background-color: #FFC107;
+    transform: scale(1.05);
 }
 
-button {
-    background-color: #4caf50;
-    color: white;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #45a049;
-}
-
-.error {
-    color: #ff4d4d;
-    margin: 10px 0;
+.alert {
+    border-radius: 0.25rem;
+    font-weight: 600;
 }
 
 .weather-info {
-    background-color: rgba(255, 255, 255, 0.2);
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-top: 20px;
 }
 
-@media (max-width: 600px) {
-    input, button {
-        width: 100%;
-    }
+.card {
+    background-color: #ffffff;
+    border: none;
+    border-radius: 15px;
+}
+
+.card-header {
+    border-radius: 15px 15px 0 0;
+}
+
+.card-body {
+    padding: 2rem;
+}
+
+.card-title {
+    font-size: 2rem; /* Increase font size for temperature */
+    font-weight: 600;
+    color: #007bff; /* Use a blue color for the temperature */
+}
+
+.card-text {
+    font-size: 1.2rem; /* Slightly larger text for weather condition */
+}
+
+.weather-info.shadow-lg {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Card shadow */
 }
