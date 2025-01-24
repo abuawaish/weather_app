@@ -15,15 +15,13 @@ The project is organized as follows:
 ```plaintext
 weather_app/
 ├── static/
-│   ├── css/
-│   │   └── styles.css       # Styling for the web pages
+│   └── styles.css           # Styling for the web pages        
 ├── templates/      
 │   └── index.html           # Homepage template and display weather results
-├── .gitignore               # ignored .env file for security                 
+├── .gitignore               # Preventing files or folders from being tracked in a repository.                 
 ├── app.py                   # Main Python application file
 ├── requirements.txt         # Dependencies for the project
 └── README.md                # Project documentation
-
 ```
 
 
