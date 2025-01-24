@@ -3,6 +3,8 @@ import requests
 from typing import Any
 from requests import ConnectionError
 from requests.models import Response
+import os
+from dotenv import load_dotenv
 
 app: Flask = Flask(__name__)
 
@@ -17,7 +19,9 @@ def weather_app() -> str:
     try:
         if request.method == 'POST':
             city: str = request.form['city']
-            api_key: str = 'c8245292d5bee7936511387031619dc1'
+            # Load environment variables from the .env file
+            load_dotenv()
+            api_key: str = os.getenv('api_key')
             weather_url: str = f'http://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}&units=metric'
             response: Response = requests.get(weather_url)
             weather_data = response.json()
