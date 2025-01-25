@@ -24,7 +24,9 @@
         </form>
 
         {% if error %}
-        <div class="alert alert-danger">{{ error }}</div>
+        <div class="alert alert-danger error-message">
+            {{ error }}
+        </div>
         {% endif %}
 
         {% if weather %}
@@ -34,7 +36,8 @@
             </div>
             <div class="card-body">
                 <h3 class="card-title">{{ weather['main']['temp'] }} &deg;C</h3>
-                <p class="card-text text-muted">Condition: {{ weather['weather'][0]['description'] }}</p>
+                <p class="fw-bold text-dark">Condition: {{ weather['weather'][0]['description'] }}</p>
+                <p class="fw-bold text-dark">Feels Like: {{ weather['main']['feels_like']}} &deg;C</p>
             </div>
         </div>
         {% endif %}

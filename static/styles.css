@@ -63,3 +63,16 @@ h1 {
 .weather-info.shadow-lg {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Card shadow */
 }
+
+.fw-bold {
+    font-weight: bold;
+}
+
+.text-dark {
+    color: #212529; /* Bootstrap's dark text color */
+}
+
+.error-message {
+    text-align: center;
+    color: red;
+}
