@@ -18,7 +18,13 @@ def weather_app() -> str:
     error_message: str = ""
     try:
         if request.method == 'POST':
-            city: str = request.form['city']
+            city: str = request.form['city'].strip()
+            city_name: str = ""
+            for char in city:
+                if char.isalpha() or char.isspace():
+                    city_name += char
+            city = city_name.strip()
+
             # Load environment variables from the .env file
             load_dotenv()
             api_key: str = os.getenv('api_key')
