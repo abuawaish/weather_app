@@ -3,47 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather App</title>
-    <!-- Bootstrap CSS -->
+    <title>WeatherWave</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
-    <!-- Weather Logo -->
-    <link rel="icon" href="{{ url_for('static', filename='weather-logo.png') }}" type="image/png">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+    <link rel="icon" href="{{ url_for('static', filename='weather-anim.gif') }}" type="image/gif">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 </head>
-<body class="bg-gradient">
+<body class="custom-gradient">
     <div class="container mt-5">
-        <h1 class="text-center text-white mb-4">Weather App</h1>
+        <div class="header-container text-center mb-4">
+            <img src="{{ url_for('static', filename='cloudy.gif') }}" class="animated-logo" alt="Weather Logo">
+            <h1 class="app-title">Weather App</h1>
+        </div>
+
         <form action="/weather_app" method="post" class="mb-4">
-            <div class="input-group">
-                <input type="text" name="city" class="form-control" placeholder="Enter city" required>
-                <div class="input-group-append">
-                    <button class="btn btn-warning" type="submit">Get Weather</button>
-                </div>
+            <div class="search-container">
+                <input type="text" name="city" class="form-control search-input"
+                       placeholder="Enter city name..." required>
+                <button class="btn btn-primary search-btn" type="submit">
+                    <span class="button-text">Get Weather</span>
+                    <span class="button-icon">⛅</span>
+                </button>
             </div>
         </form>
 
         {% if error %}
-        <div class="alert alert-danger error-message">
-            {{ error }}
+        <div style="display: flex; justify-content: center;">
+            <div class="alert alert-custom error-message animated fadeIn">
+                ⚠️ {{ error }}
+            </div>
         </div>
         {% endif %}
 
         {% if weather %}
-        <div class="weather-info card text-center shadow-lg border-0">
-            <div class="card-header bg-primary text-white">
-                <h2 class="mb-0">Weather in {{ weather['name'] }}</h2>
+        <div class="weather-card animated fadeInUp">
+            <div class="card-header glass-header">
+                <h2 class="location">{{ weather['name'] }}</h2>
+                <div class="weather-main">{{ weather['weather'][0]['main'] }}</div>
             </div>
-            <div class="card-body">
-                <h3 class="card-title">{{ weather['main']['temp'] }} &deg;C</h3>
-                <p class="fw-bold text-dark">Condition: {{ weather['weather'][0]['description'] }}</p>
-                <p class="fw-bold text-dark">Feels Like: {{ weather['main']['feels_like']}} &deg;C</p>
+            <div class="card-body glass-body">
+                <div class="temperature-display">
+                    {{ weather['main']['temp'] }}<span class="temp-unit">°C</span>
+                </div>
+                <div class="weather-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Feels Like</span>
+                        <span class="detail-value">{{ weather['main']['feels_like'] }}°C</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Humidity</span>
+                        <span class="detail-value">{{ weather['main']['humidity'] }}%</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Wind Speed</span>
+                        <span class="detail-value">{{ weather['wind']['speed'] }} m/s</span>
+                    </div>
+                </div>
             </div>
         </div>
         {% endif %}
     </div>
 
-    <!-- Bootstrap JS (Optional) -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
